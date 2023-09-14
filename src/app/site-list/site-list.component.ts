@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { PasswordManagerService } from '../password-manager.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-site-list',
@@ -8,16 +9,24 @@ import { PasswordManagerService } from '../password-manager.service';
 })
 export class SiteListComponent {
 
-  constructor(private passwordManager: PasswordManagerService) { }
+  allSites!: Observable<Array<any>> ;
+
+  constructor(private passwordManagerService: PasswordManagerService) {
+    this.loadSites();
+   }
 
   onSubmit(values: object) {
     console.log(values);
-    this.passwordManager.addSite(values).then(() => {
+    this.passwordManagerService.addSite(values).then(() => {
       console.log('Site added successfully');
     })
     .catch((err) => {
       console.log(err);
     });
+  }
+
+  loadSites() {
+    this.allSites = this.passwordManagerService.loadSites()
   }
 
 }

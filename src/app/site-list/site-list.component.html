@@ -61,14 +61,14 @@
   </div>
 
   <div class="grid grid-cols-4 gap-5">
-    <div class="shadow-lg border-2 border-gray-900">
+    <div *ngFor="let site of allSites | async" class="shadow-lg border-2 border-gray-900">
       <img
-        src="https://cdn.mos.cms.futurecdn.net/dcHyDicd7tuDEJX75NDoqV.jpeg"
+        [src]="site.siteImgUrl"
         alt=""
       />
-      <h3 class="p-3 text-xl font-bold">GoDaddy.com</h3>
+      <h3 class="p-3 text-xl font-bold"> {{site.siteName}} </h3>
       <div class="w-60 m-3 px-3 bg-blue-200 text-blue-800 rounded-lg text-sm">
-        Https://GoDaddy.com
+        {{site.siteUrl}}
       </div>
 
       <button
