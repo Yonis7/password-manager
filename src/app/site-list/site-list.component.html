@@ -15,10 +15,11 @@
   <div class="px-20 py-10 mb-10 my-5 border-4 border-gray-900">
     <h2 class="text-3xl text-center">Add new site</h2>
     <p class="text-center">You can add a new site from the form below</p>
-    <form>
+    <form #f="ngForm" (ngSubmit)="onSubmit(f.value)">
       <div class="flex flex-col">
         <label class="text-lg font-medium mb-2"> Site name </label>
         <input
+          ngModel
           type="text"
           name="siteName"
           class="border-2 border-gray-900 p-2 rounded-lg w-full"
@@ -28,6 +29,7 @@
       <div class="flex flex-col">
         <label class="text-lg font-medium mb-2"> Site URL </label>
         <input
+          ngModel
           type="text"
           name="siteUrl"
           class="border-2 border-gray-900 p-2 rounded-lg w-full"
@@ -37,6 +39,7 @@
       <div class="flex flex-col">
         <label class="text-lg font-medium mb-2"> Site Image URL </label>
         <input
+          ngModel
           type="text"
           name="siteImgUrl"
           class="border-2 border-gray-900 p-2 rounded-lg w-full"
@@ -67,7 +70,7 @@
       <div class="w-60 m-3 px-3 bg-blue-200 text-blue-800 rounded-lg text-sm">
         Https://GoDaddy.com
       </div>
-      
+
       <button
       class="my3 ml-3 mx-0.5 px-5 py-3 text-s bg-gray-900 text-white shadow rounded-md"
     >
