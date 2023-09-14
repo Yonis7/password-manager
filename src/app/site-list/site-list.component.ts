@@ -11,6 +11,11 @@ export class SiteListComponent {
 
   allSites!: Observable<Array<any>> ;
 
+  siteName!: string;
+  siteURL!: string;
+  siteImgURL!: string;
+  siteId!: string;
+
   constructor(private passwordManagerService: PasswordManagerService) {
     this.loadSites();
    }
@@ -29,4 +34,10 @@ export class SiteListComponent {
     this.allSites = this.passwordManagerService.loadSites()
   }
 
+  editSite(siteName: string,  siteURL: string, siteImgURL: string, id: string) {
+    this.siteName = siteName;
+    this.siteURL = siteURL;
+    this.siteImgURL = siteImgURL;
+    this.siteId = id;
+  }
 }
