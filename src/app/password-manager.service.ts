@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Firestore } from '@angular/fire/firestore';
-import { collection } from 'firebase/firestore';
+import { collection, deleteDoc } from 'firebase/firestore';
 import { addDoc } from 'firebase/firestore';
 import { collectionData } from '@angular/fire/firestore';
 import { doc } from 'firebase/firestore';
@@ -25,5 +25,10 @@ export class PasswordManagerService {
   updateSite(id: string, data: object) {
     const docInstance = doc(this.firestore, 'sites', id);
     return updateDoc(docInstance, data)
+  }
+
+  deleteSite(id: string) {
+    const docInstance = doc(this.firestore, 'sites', id);
+    return deleteDoc(docInstance);
   }
 }
