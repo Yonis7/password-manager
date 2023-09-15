@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PasswordManagerService } from '../password-manager.service';
 import { Observable } from 'rxjs';
-import { Route } from '@angular/router';
+import { AES } from 'crypto-js';
+import { enc } from 'crypto-js';
 @Component({
   selector: 'app-password-list',
   templateUrl: './password-list.component.html',
@@ -15,7 +16,7 @@ export class PasswordListComponent {
   siteURL !: string;
   siteImgURL !: string;
 
-  passwordList !: Observable<Array<any>>;
+  passwordList !: Array<any>;
 
   email !: string;
   username !: string;
@@ -52,7 +53,10 @@ export class PasswordListComponent {
     this.formState = 'Add new';
   }
 
-  onSubmit(values: object) {
+  onSubmit(values: any) {
+
+    const encryptPassword = this.encryptPassword(values.password)
+    values.password = encryptPassword;
 
     if (this.formState === 'Add new') {
     this.passwordManagerService.addPassword(values, this.siteId).then(() => {
@@ -72,7 +76,9 @@ export class PasswordListComponent {
 }
 
   loadPasswords() {
-    this.passwordList = this.passwordManagerService.loadPasswords(this.siteId)
+    this.passwordManagerService.loadPasswords(this.siteId).subscribe((val: any) => {
+      this.passwordList = val;
+    } );
 
   }
 
@@ -92,5 +98,22 @@ export class PasswordListComponent {
     }).catch((error) => {
       console.log(error);
     });
+  }
+
+  encryptPassword(password: string) {
+    const secretKey = 'sicVfHT5BtEMi3KFTwt4fvqS44iccGVq';
+    const encryptPassword = AES.encrypt(password, secretKey).toString();
+    return encryptPassword;
+  }
+
+  decryptPassword(password: string) {
+    const secretKey = 'sicVfHT5BtEMi3KFTwt4fvqS44iccGVq';
+    const decryptPassword = AES.decrypt(password, secretKey).toString(enc.Utf8);
+    return decryptPassword;
+  }
+
+  onDecrypt(password: string, index: number) {
+    const decryptPassword = this.decryptPassword(password);
+    this.passwordList[index].password = decryptPassword;
   }
 }
