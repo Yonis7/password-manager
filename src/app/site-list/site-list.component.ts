@@ -9,35 +9,52 @@ import { Observable } from 'rxjs';
 })
 export class SiteListComponent {
 
-  allSites!: Observable<Array<any>> ;
+  allSites!: Observable<Array<any>>;
 
   siteName!: string;
   siteURL!: string;
   siteImgURL!: string;
   siteId!: string;
 
+  formState: string = 'Add New';
+
   constructor(private passwordManagerService: PasswordManagerService) {
     this.loadSites();
-   }
+  }
 
   onSubmit(values: object) {
-    console.log(values);
-    this.passwordManagerService.addSite(values).then(() => {
-      console.log('Site added successfully');
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+
+    if (this.formState == 'Add New') {
+
+      this.passwordManagerService.addSite(values).then(() => {
+        console.log('Site added successfully');
+      })
+        .catch((err) => {
+          console.log(err);
+        });
+
+    } else if (this.formState == 'Edit') {
+
+      this.passwordManagerService.updateSite(this.siteId, values).then(() => {
+        console.log('Site updated successfully');
+      })
+        .catch((err) => {
+          console.log(err);
+        });
+
+    }
   }
 
   loadSites() {
     this.allSites = this.passwordManagerService.loadSites()
   }
 
-  editSite(siteName: string,  siteURL: string, siteImgURL: string, id: string) {
+  editSite(siteName: string, siteURL: string, siteImgURL: string, id: string) {
     this.siteName = siteName;
     this.siteURL = siteURL;
     this.siteImgURL = siteImgURL;
     this.siteId = id;
+
+    this.formState = 'Edit';
   }
 }
