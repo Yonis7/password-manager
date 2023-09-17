@@ -1,27 +1,55 @@
-# PasswordManager
+# Angular Password Manager App
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.1.
+## Overview
 
-## Development server
+The Angular Password Manager App is a web application that allows users to securely store and manage their passwords for various online accounts. It provides a user-friendly interface for adding, editing, and deleting password entries, and ensures data security by encrypting and storing passwords in a database.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Features
+- User authentication and authorization for secure access to password data.
+- Add, edit, and delete password entries.
+- Store information such as website URLs, usernames, and passwords.
+- Search and filter functionality for easy retrieval of password entries.
+- Responsive design for seamless use on both desktop and mobile devices.
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Technologies Used
 
-## Build
+- Angular: A popular front-end framework for building web applications.
+- Firebase: A cloud-based backend service used for user authentication and data storage.
+- AngularFire: An Angular library for Firebase integration.
+- RxJS: Used for handling asynchronous operations and managing observables.
+- Angular Material: Provides a set of pre-designed UI components for a consistent and modern user interface.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
+## Prerequisites
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Before you begin, ensure you have met the following requirements:
 
-## Running end-to-end tests
+- Node.js and npm installed on your local machine.
+- Angular CLI installed globally (`npm install -g @angular/cli`).
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Getting Started
 
-## Further help
+To get started with the Angular Password Manager App, follow these steps:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+1. Clone the repository to your local machine:
+
+   ```bash
+   git clone git@github.com:Yonis7/Angular-crud-app.git
+
+2. cd/Angular-crud-app
+
+3. Rum npm install
+
+4. Run ng serve
+
+
+## Screenshots
+![Login](images/Login.png)
+![wrongLogin](images/wrongLogin.png)
+![EditSite](images/Edit.png)
+![Edit](images/Edit.png)
+![Dycrpt](images/Dycrpt.png)
+
+## Licence
+Github.com/Yonis7
