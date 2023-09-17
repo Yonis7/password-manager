@@ -5,12 +5,14 @@ import { addDoc } from 'firebase/firestore';
 import { collectionData } from '@angular/fire/firestore';
 import { doc } from 'firebase/firestore';
 import { updateDoc } from 'firebase/firestore';
+import { Auth } from '@angular/fire/auth';
+import { signInWithEmailAndPassword } from '@angular/fire/auth';
 @Injectable({
   providedIn: 'root'
 })
 export class PasswordManagerService {
 
-  constructor(private firestore: Firestore) { }
+  constructor(private firestore: Firestore, private auth: Auth) { }
 
   addSite(data: object) {
     const dbInstance = collection(this.firestore, 'sites');
@@ -54,5 +56,10 @@ export class PasswordManagerService {
     return deleteDoc(docInstance);
   }
 
-  
+  // Login Queries
+  login(email: string, password: string) {
+    return signInWithEmailAndPassword(this.auth, email, password);
+  }
+
+
 }
